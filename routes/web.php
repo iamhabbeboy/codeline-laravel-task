@@ -12,8 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('homepage'));
 });
+
+Route::get('/films', 'FilmFrontendController@index')->name('homepage');
+Route::get('/films/create', 'FilmFrontendController@create')->name('create_film')->middleware('auth');
+Route::get('/films/{slug}', 'FilmFrontendController@single')->name('single_film_page');
+
 
 Auth::routes();
 

@@ -17,6 +17,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/films', 'FilmController@show');
-Route::post('/films', 'FilmController@store');
-Route::get('/films/{slug}', 'FilmController@single');
+Route::group(['prefix' => '/films'], function () {
+    Route::get('/', 'FilmController@show');
+    Route::post('/', 'FilmController@store');
+    Route::get('/{slug}', 'FilmController@single');
+    Route::post('/comment', 'CommentController@store');
+    Route::get('/comment/{slug}', 'CommentController@show');
+});
+
+Route::post('/genre', 'GenreController@store');
+
