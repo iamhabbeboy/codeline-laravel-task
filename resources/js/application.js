@@ -1,5 +1,4 @@
 $(function() {
-    const API_TOKEN = 'vaGPbrXFDXLkrY9vWm79L3b9LXxBicbMEA6ZyhcdhwKpsyA3Zm1Kpb57565X';
 
     $("#genre-btn").on("click", function() {
         const title = $("#genre-title");
@@ -12,7 +11,7 @@ $(function() {
             return false;
         } else {
             $.ajax({
-                url: `/api/genre?api_token=${API_TOKEN}`,
+                url: `/api/genre`,
                 method: "POST",
                 data: { title: title.val() }
             })
@@ -64,7 +63,7 @@ $(function() {
             data: form_data,
             contentType: false,
             processData: false,
-            url: `/api/films?api_token=${API_TOKEN}`,
+            url: `/api/films`,
             success: function(output) {
                 if (output.status) {
                     swal("Notification", "Film successfully created", "success")
@@ -78,9 +77,9 @@ $(function() {
 });
 
 $.fn.loadFilms = function(index) {
-    const API_TOKEN = 'vaGPbrXFDXLkrY9vWm79L3b9LXxBicbMEA6ZyhcdhwKpsyA3Zm1Kpb57565X';
+
     $(".preview").html("Loading...");
-    $.getJSON(`/api/films?api_token=${API_TOKEN}`).then(function(response) {
+    $.getJSON(`/api/films`).then(function(response) {
         if (response.status == "success" && response.result.length > 0) {
             // const previous = (index < 0) ? 0 : index;
             const total = response.result.length;
@@ -123,8 +122,8 @@ $.fn.loadFilms = function(index) {
 };
 
 $.fn.loadSingleFilm = function(slug) {
-    const API_TOKEN = 'vaGPbrXFDXLkrY9vWm79L3b9LXxBicbMEA6ZyhcdhwKpsyA3Zm1Kpb57565X';
-    $.getJSON(`/api/films/${slug}?api_token=${API_TOKEN}`).then(function(response) {
+
+    $.getJSON(`/api/films/${slug}`).then(function(response) {
         if (response.status == "success" && response.result != undefined) {
             $("#img")
                 .attr("src", response.result.photo)
@@ -164,8 +163,8 @@ $.fn.storecomment = function(data) {
 };
 
 $.fn.comments = function(slug) {
-    const API_TOKEN = 'vaGPbrXFDXLkrY9vWm79L3b9LXxBicbMEA6ZyhcdhwKpsyA3Zm1Kpb57565X';
-    $.getJSON(`/api/films/comment/${slug}?api_token=${API_TOKEN}`)
+
+    $.getJSON(`/api/films/comment/${slug}`)
     .then(function(response) {
         let html='';
         // console.log(response)

@@ -54,11 +54,11 @@
                         e.preventDefault();
                         const data = $(this).serialize();
                         const method = $(this).attr('method');
-                        const API_TOKEN = 'vaGPbrXFDXLkrY9vWm79L3b9LXxBicbMEA6ZyhcdhwKpsyA3Zm1Kpb57565X';
+
                         const dataString = {
                             data: data,
                             method: method,
-                            url: `/api/films/comment?api_token=${API_TOKEN}`,
+                            url: `/api/films/comment`,
                         };
 
                         $.fn.storecomment(dataString);
